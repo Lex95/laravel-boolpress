@@ -10942,3 +10942,18 @@ a.text-dark:focus {
   }
 }
 
+.container-flex {
+  display: flex;
+}
+
+.container-flex.vertical {
+  flex-direction: column;
+}
+
+.item {
+  border: 1px solid black;
+  border-radius: 5px;
+  margin: 5px;
+  padding: 5px;
+}
+
