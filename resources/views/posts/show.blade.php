@@ -3,6 +3,7 @@
 @section('content')
     <a href="{{ route('posts.index') }}">Indietro</a>
     <h1>{{ $post->title }}</h1>
+    <h6>{{ $post->category->name }}</h6>
     <p>{{ $post->content }}</p>
     <p>{{ $post->created_at }}</p>
     @auth

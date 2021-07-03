@@ -25,11 +25,14 @@ Route::prefix("admin")
     ->middleware("auth")
     ->name("admin.")
     ->group(function (){
+        // posts
         Route::get("/posts/create", "PostController@create")->name("posts.create");
         Route::post("/posts", "PostController@store")->name("posts.store");
         Route::match(["PUT", "PATCH"], "/posts/{slug}", "PostController@update")->name("posts.update");
         Route::delete("/posts/{slug}", "PostController@destroy")->name("posts.destroy");
         Route::get("/posts/{slug}/edit", "PostController@edit")->name("posts.edit");
+        // categories
+        Route::get('/categories', "CategoryController@index")->name("categories.index");
 });
 
 

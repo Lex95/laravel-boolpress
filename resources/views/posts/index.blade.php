@@ -11,6 +11,7 @@
         @foreach ($posts as $post)
             <div class="item">
                 <h1>{{ $post->title }}</h1>
+                <h6>{{ $post->category->name }}</h6>
                 <p>{{ $post->content }}</p>
                 <div class="container-flex">
                     <a href="{{ route('posts.show', ['slug' => $post->slug]) }}">Apri</a>
