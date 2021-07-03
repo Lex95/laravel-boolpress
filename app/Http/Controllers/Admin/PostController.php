@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use App\Http\Controllers\Controller;
 
 class PostController extends Controller
 {
@@ -28,7 +29,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view("posts.create");
+        return view("admin.create");
     }
 
     /**
@@ -92,7 +93,7 @@ class PostController extends Controller
             "post" => $post
         ];
 
-        return view("posts.edit", $data);
+        return view("admin.edit", $data);
     }
 
     /**
