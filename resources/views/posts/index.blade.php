@@ -3,6 +3,11 @@
 @section('content')
 
     <div class="container-flex vertical">
+        @auth
+            <div>
+                <a href="{{ route('admin.posts.create')}}">Crea un nuovo Post</a>
+            </div>
+        @endauth
         @foreach ($posts as $post)
             <div class="item">
                 <h1>{{ $post->title }}</h1>

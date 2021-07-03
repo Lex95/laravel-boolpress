@@ -11,6 +11,7 @@ $factory->define(Post::class, function (Faker $faker) {
     return [
         "title" => $title,
         "content" => $faker->realText(100),
-        "slug" => Str::slug($title)
+        "slug" => Str::slug($title),
+        "category_id" => rand(1, 3)
     ];
 });
