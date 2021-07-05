@@ -27,6 +27,11 @@
                         </form>
                     @endauth
                 </div>
+                <div class="tags-container">
+                    @foreach($post->tags as $tag)
+                        <span class="tag">{{ $tag->name }}</span>
+                    @endforeach
+                </div>
             </div>
         @endforeach
     </div>

@@ -10955,9 +10955,24 @@ a.text-dark:focus {
   border-radius: 5px;
   margin: 5px;
   padding: 5px;
+  position: relative;
+}
+
+.item .tags-container {
+  position: absolute;
+  top: 5px;
+  right: 5px;
 }
 
 .filler {
   flex-grow: 1;
+}
+
+.tag {
+  background-color: cornflowerblue;
+  color: white;
+  margin-left: 5px;
+  padding: 5px;
+  border-radius: 2px;
 }
 

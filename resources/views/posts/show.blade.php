@@ -4,6 +4,11 @@
     <a href="{{ route('posts.index') }}">Indietro</a>
     <h1>{{ $post->title }}</h1>
     <h6>{{ $post->category->name }}</h6>
+    <div class="tags-container">
+        @foreach ($post->tags as $tag)
+            <span class="tag">{{ $tag->name }}</span>
+        @endforeach
+    </div>
     <p>{{ $post->content }}</p>
     <p>{{ $post->created_at }}</p>
     @auth

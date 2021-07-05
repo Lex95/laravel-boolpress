@@ -33,6 +33,8 @@ Route::prefix("admin")
         Route::get("/posts/{slug}/edit", "PostController@edit")->name("posts.edit");
         // categories
         Route::get('/categories', "CategoryController@index")->name("categories.index");
+        // tags
+        Route::get('/tags', "TagController@index")->name("tags.index");
 });
 
 

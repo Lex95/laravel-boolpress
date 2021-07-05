@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Post;
 use App\Category;
+use App\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
@@ -31,7 +32,8 @@ class PostController extends Controller
     public function create()
     {
         $data = [
-            "categories" => Category::all()
+            "categories" => Category::all(),
+            "tags" => Tag::all()
         ];
 
         return view("admin.posts.create", $data);
@@ -54,8 +56,15 @@ class PostController extends Controller
         $newPost = new Post;
         $newPost->fill($data);
         $newPost->slug = Str::slug($request->title);
-        $newPost->save();
 
+        // occhio qua
+        if(!key_exists("tags", $data)) {
+            $newPost["tags"] = [];
+        }
+        
+        $newPost->save();
+        $newPost->tags()->sync($data["tags"]);
+        
         return redirect()->route("posts.index");
     }
 
@@ -96,7 +105,8 @@ class PostController extends Controller
         
         $data = [
             "post" => $post,
-            "categories" => Category::all()
+            "categories" => Category::all(),
+            "tags" => Tag::all()
         ];
 
         return view("admin.posts.edit", $data);
@@ -118,6 +128,12 @@ class PostController extends Controller
 
         $data = $request->all();
         $post = Post::where("slug", $slug)->first();
+
+        if(!key_exists("tags", $post)) {
+            $post["tags"] = [];
+        }
+        $post->tags()->sync($post["tags"]);
+
         $post->update($data);
 
         return redirect()->route("posts.show", $post->slug);
