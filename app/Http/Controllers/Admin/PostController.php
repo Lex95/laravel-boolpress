@@ -129,10 +129,10 @@ class PostController extends Controller
         $data = $request->all();
         $post = Post::where("slug", $slug)->first();
 
-        if(!key_exists("tags", $post)) {
+        if(!key_exists("tags", $data)) {
             $post["tags"] = [];
         }
-        $post->tags()->sync($post["tags"]);
+        $post->tags()->sync($data["tags"]);
 
         $post->update($data);
 
@@ -148,6 +148,8 @@ class PostController extends Controller
     public function destroy($slug)
     {
         $post = Post::where("slug", $slug)->first();
+
+        $post->tags()->detach();
 
         $post->delete();
 

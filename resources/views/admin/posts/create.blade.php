@@ -15,8 +15,10 @@
         <br><br>
         <div class="tags-container">
             @foreach($tags as $tag)
-                <input type="checkbox" name="tags[]" value="{{$tag->id}}">
-                <label for="tags[]">{{$tag->name}}</label>
+                <label>
+                    <input type="checkbox" name="tags[]" value="{{$tag->id}}">
+                    {{$tag->name}}
+                </label>
             @endforeach
         </div>
         <br><br>
