@@ -19,9 +19,7 @@ Route::get('/', "HomeController@index")->name("index");
 Route::get('/posts', "PostController@index")->name("posts.index");
 Route::get('/posts/{slug}', "PostController@show")->name("posts.show");
 
-Route::get('/contact', function () {
-    return view("posts.sendMail");
-})->name("contact");
+Route::get('/contact', "MailController@contact")->name("contact");
 Route::post('/send', "MailController@send")->name("send");
 
 // per admin, da fare ancora la distinzione
