@@ -34,6 +34,7 @@
                 </div>
             </div>
         @endforeach
+        <a href="{{ route('contact') }}">Contatta l'amministratore</a>
     </div>
 
 @endsection

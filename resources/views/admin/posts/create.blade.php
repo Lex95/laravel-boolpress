@@ -22,7 +22,7 @@
             @endforeach
         </div>
         <br><br>
-        <label for="title">Content</label><br>
+        <label for="content">Content</label><br>
         <textarea rows="10" cols="80" name="content" id="content"></textarea>
         <br>
         <input type="submit" value="Conferma">
