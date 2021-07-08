@@ -3,6 +3,7 @@
 @section('content')
     <a href="{{ route('posts.index') }}">Indietro</a>
     <h1>{{ $post->title }}</h1>
+    <img src="{{ asset('storage/' . $post->cover_url) }}" alt="">
     <h6>{{ $post->category->name }}</h6>
     <div class="tags-container">
         @foreach ($post->tags as $tag)

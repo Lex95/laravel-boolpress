@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 
+use Illuminate\Support\Facades\Storage;
+
 class PostController extends Controller
 {
     /**
@@ -57,9 +59,12 @@ class PostController extends Controller
         $newPost->fill($data);
         $newPost->slug = Str::slug($request->title);
 
-        // occhio qua
         if(!key_exists("tags", $data)) {
             $newPost["tags"] = [];
+        }
+
+        if(key_exists("postCover", $data)) {
+            $newPost->cover_url = Storage::put("postCovers", $data["postCover"]);
         }
         
         $newPost->save();
@@ -129,10 +134,20 @@ class PostController extends Controller
         $data = $request->all();
         $post = Post::where("slug", $slug)->first();
 
-        if(!key_exists("tags", $data)) {
-            $post["tags"] = [];
+        if(key_exists("tags", $data)) {
+            $post->tags()->sync($data["tags"]);
         }
-        $post->tags()->sync($data["tags"]);
+
+        if(key_exists("postCover", $data)) {
+            if ($post->cover_url) {
+                Storage::delete($post->cover_url);
+            }
+
+            $post->cover_url = Storage::put("postCovers", $data["postCover"]);
+        } else {
+            Storage::delete($post->cover_url);
+            $post->cover_url = NULL;
+        }
 
         $post->update($data);
 

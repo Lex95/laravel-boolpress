@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <form action="{{ route('admin.posts.store') }}" method="POST">
+    <form action="{{ route('admin.posts.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <label for="title">Title</label><br>
         <input type="text" name="title" id="title">
@@ -25,6 +25,9 @@
         <label for="content">Content</label><br>
         <textarea rows="10" cols="80" name="content" id="content"></textarea>
         <br>
+        <label for="">Copertina</label><br>
+        <input type="file" name="postCover" accept=".jpg,.png">
+        <br><br>
         <input type="submit" value="Conferma">
     </form>
     <a href="{{ route('posts.index') }}">Indietro</a>

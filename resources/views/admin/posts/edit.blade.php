@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <form action="{{ route('admin.posts.update', ['slug' => $post->slug]) }}" method="POST">
+    <form action="{{ route('admin.posts.update', ['slug' => $post->slug]) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <label for="title">Title</label><br>
@@ -26,6 +26,9 @@
         <label for="title">Content</label><br>
         <textarea rows="10" cols="80" name="content" id="content">{{ old('content', $post->content) }}</textarea>
         <br>
+        <label for="">Copertina</label><br>
+        <input type="file" name="postCover" accept=".jpg,.png">
+        <br><br>
         <input type="submit" value="Conferma">
     </form>
     <a href="{{ route('posts.index') }}">Indietro</a>
